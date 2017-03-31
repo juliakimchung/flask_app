@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
@@ -15,9 +15,9 @@ stores = [
 
     ]
 
-# @app.route('/')
-# def home():
-#     return "hello world!"
+@app.route('/')
+def home():
+    return render_template('index.html')
 # POST - used to receive data
 # GET - used to send the data back only
 
@@ -56,7 +56,7 @@ def create_item_in_store(name):
         if store['name'] == name:
 
             new_items = {
-            'name': request_data['name']
+            'name': request_data['name'],
             'price': request_data['price']
             }
             store['items'].append(new_item)
